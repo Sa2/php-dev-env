@@ -1,4 +1,4 @@
-version: '2'
+version: '3.4'
 services:
     web:
         build:
@@ -14,3 +14,25 @@ services:
             context: ./env/php
         volumes:
             - ./app:/var/www/app
+        links:
+            - mariadb
+            - redis
+    mariadb:
+        restart: always
+        image: mariadb:10.3
+        volumes:
+            - ./data/mariadb:/var/lib/mysql
+        # volumes:
+        environment:
+            MYSQL_ROOT_PASSWORD: example
+            MYSQL_DATABASE: test
+        ports:
+            - "3306:3306"
+    redis:
+        restart: always
+        image: redis:latest
+        volumes:
+            - ./data/redis:/data
+        ports:
+            - "6379:6379"
+        command: redis-server --appendonly yes
