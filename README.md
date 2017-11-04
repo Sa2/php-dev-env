@@ -1,5 +1,10 @@
 # PHP Development environment
 
+## Required
+
+- docker
+- docker-compose
+
 ## How to run
 
 ```
