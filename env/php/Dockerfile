@@ -1,8 +1,7 @@
-FROM php:7.1-fpm
+FROM php:7.2-fpm-alpine
 
 ENV EXECUTE_USER developer
-RUN apt-get update && apt-get install -y libmcrypt-dev mysql-client zip unzip vim
-RUN docker-php-ext-install mcrypt 
+RUN apk update && apk add libmcrypt-dev mysql-client zip unzip vim shadow
 RUN curl -sS https://getcomposer.org/installer | php && \
     mv composer.phar /usr/local/bin/composer && \
     # user追加
