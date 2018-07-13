@@ -1,4 +1,4 @@
-FROM php:7-fpm
+FROM php:7.1-fpm
 
 ENV EXECUTE_USER developer
 RUN apt-get update && apt-get install -y libmcrypt-dev mysql-client zip unzip vim
